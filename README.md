@@ -1,2 +1,2 @@
-# threadsniki
+# threadwiki
 Tiny Python Wiki
