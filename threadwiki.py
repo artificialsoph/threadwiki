@@ -1,8 +1,7 @@
-import path;import mistune as m;import flask
+import path,flask
+import mistune as m
 a,d=flask.Flask(""),path.Path("p")
 @a.route("/<p>")
 def s(p):
-	r,f=flask.request.args,d/p;k=f.text()if f.exists()else""
-	if'n'in r: f.write_text(r['n'])
-	b=[f"<a href='/{l[2:]}'>{l[2:]}</a><br>"for l in d.files()if"/"+p in l.text()]
-	return f"<h1>{p}</h1>"+m.markdown(k)+"<form><textarea name=n></textarea><input type=submit>"+''.join(b)
+	f=d/p;k=f.text();f.write_text(flask.request.args.get('n', k));b=[f"[{l[2:]}](/{l[2:]})\n"for l in d.files()if"/"+p in l.text()]
+	return m.markdown(f"#{p}\n{k}\n\n"+''.join(b))+f"<form><textarea name=n>{k}</textarea>\n<input type=submit>"
